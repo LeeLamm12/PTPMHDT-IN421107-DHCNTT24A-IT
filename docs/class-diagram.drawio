@@ -1,0 +1,93 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="9mb6ni-eFw7lT50Nkfey">
+    <mxGraphModel dx="1789" dy="1273" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="0" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="club" parent="1" style="swimlane;html=1;startSize=30;horizontal=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;swimlaneFillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontFamily=Arial;fontSize=14;align=left;verticalAlign=top;spacingLeft=8;spacingTop=5;collapsible=0;" value="&lt;b&gt;Club&lt;/b&gt;&lt;hr/&gt;+ Id : Guid (PK)&lt;br/&gt;+ Name : string&lt;br/&gt;+ Description : string&lt;br/&gt;+ CreatedAt : DateTime&lt;br/&gt;+ Members : IReadOnlyList&lt;Member&gt;&lt;hr/&gt;+ Create()&lt;br/&gt;+ AddMember(member)&lt;br/&gt;+ MemberCount() : int" vertex="1">
+          <mxGeometry height="300" width="360" x="80" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="event" parent="1" style="swimlane;html=1;startSize=30;horizontal=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;swimlaneFillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontFamily=Arial;fontSize=14;align=left;verticalAlign=top;spacingLeft=8;spacingTop=5;collapsible=0;" value="&lt;b&gt;Event&lt;/b&gt;&lt;hr/&gt;+ Id : Guid (PK)&lt;br/&gt;+ ClubId : Guid (FK)&lt;br/&gt;+ Title : string&lt;br/&gt;+ Date : DateTime&lt;br/&gt;+ Capacity : int&lt;br/&gt;+ IsOnline : bool&lt;hr/&gt;+ Create()&lt;br/&gt;+ HasCapacity(registeredCount) : bool" vertex="1">
+          <mxGeometry height="280" width="360" x="700" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="member" parent="1" style="swimlane;html=1;startSize=30;horizontal=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;swimlaneFillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontFamily=Arial;fontSize=14;align=left;verticalAlign=top;spacingLeft=8;spacingTop=5;collapsible=0;" value="&lt;b&gt;Member&lt;/b&gt;&lt;hr/&gt;+ Id : Guid (PK)&lt;br/&gt;+ Name : string&lt;br/&gt;+ Email : string&lt;br/&gt;+ StudentCode : string&lt;br/&gt;+ JoinedAt : DateTime&lt;br/&gt;+ Status : MemberStatus&lt;hr/&gt;+ Create()&lt;br/&gt;+ IsActive() : bool&lt;br/&gt;+ Deactivate()&lt;br/&gt;+ Reactivate()" vertex="1">
+          <mxGeometry height="310" width="360" x="80" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="registration" parent="1" style="swimlane;html=1;startSize=30;horizontal=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;swimlaneFillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontFamily=Arial;fontSize=14;align=left;verticalAlign=top;spacingLeft=8;spacingTop=5;collapsible=0;" value="&lt;b&gt;Registration&lt;/b&gt;&lt;hr/&gt;+ Id : Guid (PK)&lt;br/&gt;+ MemberId : Guid (FK)&lt;br/&gt;+ EventId : Guid (FK)&lt;br/&gt;+ RegisteredAt : DateTime&lt;br/&gt;+ Status : RegistrationStatus&lt;hr/&gt;+ Create()&lt;br/&gt;+ Confirm()&lt;br/&gt;+ Cancel()" vertex="1">
+          <mxGeometry height="270" width="360" x="700" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="checkin" parent="1" style="swimlane;html=1;startSize=30;horizontal=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;swimlaneFillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontFamily=Arial;fontSize=14;align=left;verticalAlign=top;spacingLeft=8;spacingTop=5;collapsible=0;" value="&lt;b&gt;CheckIn&lt;/b&gt;&lt;hr/&gt;+ Id : Guid (PK)&lt;br/&gt;+ RegistrationId : Guid (FK)&lt;br/&gt;+ CheckedInAt : DateTime&lt;br/&gt;+ Method : string&lt;hr/&gt;+ Create(registration, method)&lt;br/&gt;+ Summary() : string" vertex="1">
+          <mxGeometry height="240" width="330" x="1220" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_club_event" edge="1" parent="1" source="club" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=none;strokeColor=#000000;fontColor=#000000;fontFamily=Arial;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.35;exitDx=0;exitDy=0;entryX=0;entryY=0.35;entryDx=0;entryDy=0;" target="event" value="tổ chức">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="club_event_one" connectable="0" parent="rel_club_event" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#000000;fontFamily=Arial;fontSize=14;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.45" y="-1" as="geometry">
+            <mxPoint y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="club_event_many" connectable="0" parent="rel_club_event" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#000000;fontFamily=Arial;fontSize=14;labelBackgroundColor=#FFFFFF;" value="*" vertex="1">
+          <mxGeometry relative="1" x="0.45" y="-1" as="geometry">
+            <mxPoint y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel_member_club" edge="1" parent="1" source="member" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=none;strokeColor=#000000;fontColor=#000000;fontFamily=Arial;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="club" value="tham gia">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="member_club_many_a" connectable="0" parent="rel_member_club" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#000000;fontFamily=Arial;fontSize=14;labelBackgroundColor=#FFFFFF;" value="*" vertex="1">
+          <mxGeometry relative="1" x="-0.45" y="-1" as="geometry">
+            <mxPoint x="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="member_club_many_b" connectable="0" parent="rel_member_club" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#000000;fontFamily=Arial;fontSize=14;labelBackgroundColor=#FFFFFF;" value="*" vertex="1">
+          <mxGeometry relative="1" x="0.45" y="-1" as="geometry">
+            <mxPoint x="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel_member_registration" edge="1" parent="1" source="member" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=none;strokeColor=#000000;fontColor=#000000;fontFamily=Arial;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="registration" value="đăng ký">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="member_registration_one" connectable="0" parent="rel_member_registration" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#000000;fontFamily=Arial;fontSize=14;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.45" y="-1" as="geometry">
+            <mxPoint y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="member_registration_many" connectable="0" parent="rel_member_registration" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#000000;fontFamily=Arial;fontSize=14;labelBackgroundColor=#FFFFFF;" value="*" vertex="1">
+          <mxGeometry relative="1" x="0.45" y="-1" as="geometry">
+            <mxPoint y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel_event_registration" edge="1" parent="1" source="event" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=none;strokeColor=#000000;fontColor=#000000;fontFamily=Arial;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="registration" value="có">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="event_registration_one" connectable="0" parent="rel_event_registration" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#000000;fontFamily=Arial;fontSize=14;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.45" y="-1" as="geometry">
+            <mxPoint x="14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="event_registration_many" connectable="0" parent="rel_event_registration" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#000000;fontFamily=Arial;fontSize=14;labelBackgroundColor=#FFFFFF;" value="*" vertex="1">
+          <mxGeometry relative="1" x="0.45" y="-1" as="geometry">
+            <mxPoint x="14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel_registration_checkin" edge="1" parent="1" source="registration" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=none;strokeColor=#000000;fontColor=#000000;fontFamily=Arial;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="checkin" value="điểm danh">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="registration_checkin_one" connectable="0" parent="rel_registration_checkin" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#000000;fontFamily=Arial;fontSize=14;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.45" y="-1" as="geometry">
+            <mxPoint y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="registration_checkin_optional" connectable="0" parent="rel_registration_checkin" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#000000;fontFamily=Arial;fontSize=14;labelBackgroundColor=#FFFFFF;" value="0..1" vertex="1">
+          <mxGeometry relative="1" x="0.45" y="-1" as="geometry">
+            <mxPoint y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend" parent="1" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=none;fontColor=#000000;fontFamily=Arial;fontSize=12;" value="1 = đúng một, * = nhiều, 0..1 = không hoặc một, PK = khóa chính, FK = khóa ngoại" vertex="1">
+          <mxGeometry height="30" width="900" x="80" y="900" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
